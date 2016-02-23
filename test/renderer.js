@@ -102,4 +102,8 @@ describe('Renderer', function() {
     it('should render tables', function() {
         assertMd(fs.readFileSync(path.resolve(__dirname, 'fixtures/table.md'), { encoding: 'utf8' }));
     });
+
+    it('should render tables with aligned columns', function() {
+        assertMd(fs.readFileSync(path.resolve(__dirname, 'fixtures/table_right.md'), { encoding: 'utf8' }));
+    });
 });

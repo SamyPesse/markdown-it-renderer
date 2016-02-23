@@ -41,6 +41,15 @@ function listClose(tokens, idx, options, env, slf) {
 // ----- Table utilities
 
 function tableColumnDelimiter(tokens, idx, options, env, slf) {
+    var token = tokens[idx];
+    if (token.type == 'th_open') {
+        var attrIndex = token.attrIndex('style');
+        var style = attrIndex >= 0? token.attrs[attrIndex][1] : '';
+
+        slf._tableColumnStyles.push(style == 'text-align:right'? ':' : ' ')
+    }
+
+
     slf._tableColumn += 1;
     return slf._tableColumn == 1? '| ' : ' | ';
 }
@@ -80,7 +89,7 @@ module.exports = {
     link_open: function(tokens, idx, options, env, slf) {
         var token = tokens[idx];
 
-        var href = token.attrs[token.attrIndex('href')][1]
+        var href = token.attrs[token.attrIndex('href')][1];
 
         this._links = this._links || [];
         this._links.push(href);
@@ -168,14 +177,15 @@ module.exports = {
         return '';
     },
 
-    thead_open: function() {
+    thead_open: function(tokens, idx, options, env, slf) {
+        slf._tableColumnStyles = [];
         return '';
     },
     thead_close: function(tokens, idx, options, env, slf) {
         var s = '';
 
         for (var i = 0; i < slf._tableLastRowColumns; i++) {
-            s += '| ----- ';
+            s += '| -----'+slf._tableColumnStyles[i];
         }
         s += '|\n';
 
