@@ -1,6 +1,6 @@
 # markdown-it-mdrenderer
 
-Render [markdown-it](https://github.com/markdown-it/markdown-it) tokens back to markdown. It can be used for anotating some markdown.
+Render [markdown-it](https://github.com/markdown-it/markdown-it) tokens back to markdown. It can be used for annotating / transforming some markdown.
 
 ```js
 var MarkdownIt = require('markdown-it');
