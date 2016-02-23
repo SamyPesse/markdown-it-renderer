@@ -26,6 +26,8 @@ function block(s) {
 }
 
 
+// ----- List utilities
+
 function listOpen(tokens, idx, options, env, slf) {
     slf._listNested = (slf._listNested || 0) + 1;
     return '';
@@ -35,6 +37,14 @@ function listClose(tokens, idx, options, env, slf) {
     slf._listNested = slf._listNested - 1;
     return '';
 }
+
+// ----- Table utilities
+
+function tableColumnDelimiter(tokens, idx, options, env, slf) {
+    slf._tableColumn += 1;
+    return slf._tableColumn == 1? '| ' : ' | ';
+}
+
 
 module.exports = {
     // ----- Code blocks
@@ -146,6 +156,56 @@ module.exports = {
     },
     list_item_close: function() {
         return '';
-    }
+    },
+
+
+    // ------- Tables
+
+    table_open: function() {
+        return '';
+    },
+    table_close: function() {
+        return '';
+    },
+
+    thead_open: function() {
+        return '';
+    },
+    thead_close: function(tokens, idx, options, env, slf) {
+        var s = '';
+
+        for (var i = 0; i < slf._tableLastRowColumns; i++) {
+            s += '| ----- ';
+        }
+        s += '|\n';
+
+        return s;
+    },
+
+    tbody_open: function() {
+        return '';
+    },
+    tbody_close: function() {
+        return '';
+    },
+
+    tr_open: function(tokens, idx, options, env, slf) {
+        slf._tableColumn = 0;
+        return '';
+    },
+    tr_close: function(tokens, idx, options, env, slf) {
+        slf._tableLastRowColumns = slf._tableColumn;
+        return ' |\n';
+    },
+
+    th_open: tableColumnDelimiter,
+    th_close: function() {
+        return '';
+    },
+
+    td_open: tableColumnDelimiter,
+    td_close: function() {
+        return '';
+    },
 };
 

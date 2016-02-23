@@ -1,5 +1,7 @@
 var assert = require('assert');
 var _ = require('lodash');
+var path = require('path');
+var fs = require('fs');
 
 var MarkdownIt = require('markdown-it');
 var Renderer = require('markdown-it/lib/renderer');
@@ -95,5 +97,9 @@ describe('Renderer', function() {
 
     it('should render footnotes', function() {
         assertMd('Footnote 1 link[^first].\nCool!');
+    });
+
+    it('should render tables', function() {
+        assertMd(fs.readFileSync(path.resolve(__dirname, 'fixtures/table.md'), { encoding: 'utf8' }));
     });
 });
