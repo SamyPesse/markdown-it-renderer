@@ -1,0 +1,25 @@
+{
+    "name": "markdown-it-mdrenderer",
+    "version": "0.0.0",
+    "description": "markdown-it renderer to outptu markdown",
+    "main": "index.js",
+    "devDependencies": {
+        "mocha": "^2.3.3",
+        "markdown-it": "6.0.0",
+        "markdown-it-footnote": "2.0.0",
+        "markdown-it-lazy-headers": "0.1.3",
+        "lodash": "4.5.1"
+    },
+    "scripts": {
+        "test": "export TESTING=true; mocha --reporter list --bail"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SamyPesse/markdown-it-mdrenderer.git"
+    },
+    "author": "Samy Pesse <samypesse@gmail.com>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/SamyPesse/markdown-it-mdrenderer/issues"
+    }
+}
