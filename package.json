@@ -1,6 +1,6 @@
 {
     "name": "markdown-it-mdrenderer",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "markdown-it renderer to output markdown",
     "main": "index.js",
     "devDependencies": {
